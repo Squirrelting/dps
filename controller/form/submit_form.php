@@ -63,8 +63,8 @@ try {
             $applicant_id = $stmt_applicant->insert_id; // Get the inserted applicant_id
 
             // Insert into application
-            $sql_application = "INSERT INTO application (applicant_id, status, interview_date)
-                                VALUES (?, ?, NULL)";
+            $sql_application = "INSERT INTO application (applicant_id, status, interview_date, interview_time)
+                                VALUES (?, ?, NULL, NULL)";
             $stmt_application = $conn->prepare($sql_application);
 
             $status = 'PENDING'; 

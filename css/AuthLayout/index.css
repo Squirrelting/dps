@@ -164,3 +164,63 @@
     background-color: white;
     border-radius: 15px;
 }
+
+.date-picker-container {
+    position: relative;
+    display: inline-block;
+}
+
+.date-picker {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+.date-picker:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.time-picker-container {
+    position: relative;
+    display: inline-block;
+}
+
+.time-picker {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+.time-picker:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.clock-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
