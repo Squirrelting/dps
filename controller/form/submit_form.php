@@ -13,9 +13,7 @@ try {
     $applicant = $data['applicant'];
     $parents = $data['parents'];
 
-    // Check applicant data for debugging
-    error_log(print_r($applicant, true)); // Log applicant data
-
+    // Insert into parents_background
     $sql_parents = "INSERT INTO parents_background (mother_firstname, mother_middlename, mother_lastname, mother_occupation, father_firstname, father_middlename, father_lastname, father_occupation)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_parents = $conn->prepare($sql_parents);
@@ -32,14 +30,15 @@ try {
     );
 
     if ($stmt_parents->execute()) {
-        $parents_id = $stmt_parents->insert_id;
+        $parents_id = $stmt_parents->insert_id;  // Get the inserted parents_id
 
+        // Insert into applicant
         $sql_applicant = "INSERT INTO applicant (firstname, middlename, lastname, email, age, sex, birthdate, height, weight, status, citizenship, barangay, municipality, province, country, parents_id, created_at, updated_at)
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
 
         $stmt_applicant = $conn->prepare($sql_applicant);
         
-        // Update the type specifier to match the number of parameters
+        // Bind parameters with the correct type specifiers
         $stmt_applicant->bind_param(
             "ssssisssssssssss", // 16 type specifiers
             $applicant['firstname'],
@@ -61,7 +60,27 @@ try {
         );
 
         if ($stmt_applicant->execute()) {
-            echo json_encode(["success" => true, "message" => "Applicant and parents information saved successfully."]);
+            $applicant_id = $stmt_applicant->insert_id; // Get the inserted applicant_id
+
+            // Insert into application
+            $sql_application = "INSERT INTO application (applicant_id, status, interview_date)
+                                VALUES (?, ?, NULL)";
+            $stmt_application = $conn->prepare($sql_application);
+
+            $status = 'PENDING'; 
+            $stmt_application->bind_param(
+                "is",
+                $applicant_id, 
+                $status
+            );
+
+            if ($stmt_application->execute()) {
+                echo json_encode(["success" => true, "message" => "Applicant and parents information saved successfully."]);
+            } else {
+                echo json_encode(["success" => false, "message" => "Error saving application: " . $stmt_application->error]);
+            }
+
+            $stmt_application->close();
         } else {
             echo json_encode(["success" => false, "message" => "Error saving applicant: " . $stmt_applicant->error]);
         }
