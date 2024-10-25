@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+    <!-- JS for jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JS for full calendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../../../css/AuthLayout/index.css?v=<?php echo time(); ?>">
+    <link rel="icon" href="images/ez.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+
+
+    <title>EZCheck Admin</title>
+</head>
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading. Please wait...</p>
+    </div>
+</div>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+                class='bx bxs-shield'></i>DPS</div>
+        <div class="list-group list-group-flush my-3">
+            <ul class="side-menu">
+                <li class="tab is-active">
+                    <a href="?page=dashboard" data-switcher data-tab="dashboard"
+                        class="tab is-active list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
+                            class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                </li>
+
+                <li class="tab">
+                    <a href="?page=users" data-switcher data-tab="users"
+                        class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
+                            class='bx bxs-user'></i> Users</a>
+                </li>
+
+                <li class="tab">
+                    <a href="?page=applicants" data-switcher data-tab="applicants"
+                        class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
+                            class='bx bxs-file-blank'></i> Applicants</a>
+                </li>
+
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
+            </ul>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                <h2 class="fs-2 m-0"><?php $_GET['page'] ?></h2>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-2"></i>John Doe
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="tab is-active"><a class="dropdown-item" href="#">Profile</a></li>
+                            <li class="tab"><a class="dropdown-item" href="#">Settings</a></li>
+                            <li class="tab"><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section class="pages">
+            <div class="card shadow custom-card">
+
+                <div class="page is-active" data-page="dashboard">
+
+                </div>
+
+                <div class="page" data-page="users">
+
+                </div>
+
+                <div class="page" data-page="applicants">
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+</div>
+<!-- CONTENT -->
+
+
+<script>
+    var el = document.getElementById("wrapper");
+    var toggleButton = document.getElementById("menu-toggle");
+
+    toggleButton.onclick = function () {
+        el.classList.toggle("toggled");
+    };
+</script>
+<script>
+    var currentYear = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabSwitchers = document.querySelectorAll('[data-switcher]');
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialPage = urlParams.get('page') || 'dashboard';
+
+        // Set up click event listeners for tab switchers
+        tabSwitchers.forEach(tabSwitcher => {
+            tabSwitcher.addEventListener('click', (event) => {
+                event.preventDefault();
+                const pageId = tabSwitcher.dataset.tab;
+
+                document.querySelector('.side-menu .tab.is-active').classList.remove('is-active');
+                tabSwitcher.parentNode.classList.add('is-active');
+
+                loadPageContent(pageId);
+
+                // Update URL without reloading the page
+                history.pushState({ page: pageId }, '', `${window.location.pathname}?page=${pageId}`);
+            });
+        });
+
+        // Load content for the initial page if it exists
+        loadPageContent(initialPage);
+
+        // Fetch and display content for a given page
+        function loadPageContent(pageId) {
+            let pageUrl;
+
+            // Map route names to file paths
+            switch (pageId) {
+                case 'dashboard':
+                    pageUrl = '../../auth/dashboard.php';
+                    break;
+                case 'users':
+                    pageUrl = '../../auth/users/index.php';
+                    break;
+                case 'applicants':
+                    pageUrl = '../../auth/applicants/index.php';
+                    break;
+                default:
+                    console.error(`No page found for route: ${pageId}`);
+                    return;
+            }
+
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'block';
+
+            fetch(pageUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Network response was not ok ${response.statusText}`);
+                    return response.text();
+                })
+                .then(html => {
+                    const page = document.querySelector(`.pages .page[data-page="${pageId}"]`);
+                    page.innerHTML = html;
+
+                    // Switch to the loaded page and hide the loading overlay
+                    switchPage(pageId);
+                })
+                .catch(error => {
+                    console.log(`Error loading page: ${error}`);
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                });
+        }
+
+        // Function to switch to the specified page
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.pages .page');
+            pages.forEach(page => {
+                if (page.dataset.page === pageId) {
+                    page.classList.add('is-active');
+                } else {
+                    page.classList.remove('is-active');
+                    page.innerHTML = '';  // Clear other pages to free memory
+                }
+            });
+            $('#myTable').DataTable();
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+    });
+</script>
+<script src="../../js/AuthLayout/script.js?v=<?php echo time(); ?>"></script>
+</body>
+
+</html>
