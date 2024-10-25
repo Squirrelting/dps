@@ -6,6 +6,7 @@
         <div id="options">
         </div>
     </div>
+
     <div class="container mt-3">
         <h2 class="text-center mb-4">Review Information</h2>
 
@@ -43,6 +44,46 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Set a interview date</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form onsubmit="acceptApplicant(); return false">
+                <div class="d-flex flex-row">
+                    <div class="modal-body">
+                        <div class="container">
+                            <p>Select a Date</p>
+                            <div class="form-group date-picker-container">
+                                <input type="date" id="interviewDate" class="form-control date-picker" id="dateInput"
+                                    placeholder="Select date" required />
+                                <span class="calendar-icon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-3">
+                        <p>Select a Time</p>
+                        <div class="form-group time-picker-container">
+                            <input type="time" id="interviewTime" class="form-control time-picker" id="timeInput" required/>
+                            <span class="clock-icon">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Accept</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

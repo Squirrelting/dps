@@ -10,12 +10,8 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
     <!-- JS for jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- JS for full calendar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.min.js"></script>
@@ -34,9 +30,7 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../../css/AuthLayout/index.css?v=<?php echo time(); ?>">
     <link rel="icon" href="images/ez.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-
-
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>EZCheck Admin</title>
 </head>
 <div class="loading-overlay" id="loadingOverlay">
@@ -160,7 +154,6 @@ if (!isset($_SESSION['username'])) {
 <!-- /#page-content-wrapper -->
 </div>
 <!-- CONTENT -->
-
 
 <script>
     var el = document.getElementById("wrapper");

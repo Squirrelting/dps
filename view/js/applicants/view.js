@@ -50,7 +50,9 @@ function getApplicantDetails() {
       let placeholder = document.querySelector("#options");
       if (data.applicant.status === "PENDING") {
         let out = `
-            <button type="button" class="btn btn-success" onclick="acceptApplicant(${applicantId})">Accept</button>
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Accept
+            </button>
             <button type="button" class="btn btn-danger" onclick="rejectApplicant(${applicantId})">Reject</button>`;
         placeholder.innerHTML = out;
       }
@@ -63,7 +65,13 @@ function getApplicantDetails() {
   });
 }
 
-function acceptApplicant(id) {
+$(function () {
+  $("#datetimepicker1").datetimepicker();
+});
+
+function acceptApplicant() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const applicantId = urlParams.get("applicantId");
   Swal.fire({
     title: "Are you sure?",
     text: "You are about to accept this applicant. Continue?",
@@ -74,10 +82,27 @@ function acceptApplicant(id) {
     confirmButtonText: "Yes, accept it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      $.ajax({
-        url: `../../controller/applicants/accept_applicant.php?id=${id}`,
-        type: "GET",
-        success: function (response) {
+      var interviewDate = $("#interviewDate").val();
+      var interviewTime = $("#interviewTime").val();
+
+      Swal.fire({
+        title: "Processing...",
+        html: "Please wait while we accept the applicant.",
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        onOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      $.post(
+        `../../controller/applicants/accept_applicant.php`,
+        {
+          id: applicantId,
+          interviewDate: interviewDate,
+          interviewTime: interviewTime,
+        },
+        function (response) {
           let data = JSON.parse(response);
           if (data.status === "error") {
             Swal.fire({
@@ -98,8 +123,8 @@ function acceptApplicant(id) {
               getApplicantsPendingCount();
             });
           }
-        },
-      });
+        }
+      );
     }
   });
 }
@@ -115,6 +140,16 @@ function rejectApplicant(id) {
     confirmButtonText: "Yes, reject it!",
   }).then((result) => {
     if (result.isConfirmed) {
+      Swal.fire({
+        title: "Processing...",
+        html: "Please wait while we reject the applicant.",
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        onOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
       $.ajax({
         url: `../../controller/applicants/reject_applicant.php?id=${id}`,
         type: "GET",
