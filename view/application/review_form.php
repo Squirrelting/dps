@@ -22,30 +22,37 @@ $parents = $_SESSION['parents'] ?? [];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Information</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Custom styles -->
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="icon" href="image/shield.jpg" type="image/vnd.microsoft.icon">
 
     <style>
         .review-info p {
-            margin: 0.2rem 0; /* Reduced margin for paragraphs */
+            margin: 0.2rem 0;
+            /* Reduced margin for paragraphs */
         }
+
         .navbar {
-            background-color: #5bc0de; /* Light blue navbar */
+            background-color: #5bc0de;
+            /* Light blue navbar */
         }
+
         .navbar-brand {
             color: black;
             font-weight: bold;
         }
+
         .section-header {
-            color: #007bff; /* Primary color for section headers */
+            color: #007bff;
+            /* Primary color for section headers */
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
@@ -84,26 +91,70 @@ $parents = $_SESSION['parents'] ?? [];
             <div class="col-md-6">
                 <h3 class="section-header">Parents/Guardian Information</h3>
                 <div class="border p-2 rounded review-info">
-                    <p><strong>Mother's First Name:</strong> <?= htmlspecialchars($parents['mother_firstname'] ?? 'N/A') ?></p>
-                    <p><strong>Mother's Middle Name:</strong> <?= htmlspecialchars($parents['mother_middlename'] ?? 'N/A') ?></p>
-                    <p><strong>Mother's Last Name:</strong> <?= htmlspecialchars($parents['mother_lastname'] ?? 'N/A') ?></p>
-                    <p><strong>Mother's Occupation:</strong> <?= htmlspecialchars($parents['mother_occupation'] ?? 'N/A') ?></p>
-                    <p><strong>Father's First Name:</strong> <?= htmlspecialchars($parents['father_firstname'] ?? 'N/A') ?></p>
-                    <p><strong>Father's Middle Name:</strong> <?= htmlspecialchars($parents['father_middlename'] ?? 'N/A') ?></p>
-                    <p><strong>Father's Last Name:</strong> <?= htmlspecialchars($parents['father_lastname'] ?? 'N/A') ?></p>
-                    <p><strong>Father's Occupation:</strong> <?= htmlspecialchars($parents['father_occupation'] ?? 'N/A') ?></p>
+                    <p><strong>Mother's First Name:</strong>
+                        <?= htmlspecialchars($parents['mother_firstname'] ?? 'N/A') ?></p>
+                    <p><strong>Mother's Middle Name:</strong>
+                        <?= htmlspecialchars($parents['mother_middlename'] ?? 'N/A') ?></p>
+                    <p><strong>Mother's Last Name:</strong>
+                        <?= htmlspecialchars($parents['mother_lastname'] ?? 'N/A') ?></p>
+                    <p><strong>Mother's Occupation:</strong>
+                        <?= htmlspecialchars($parents['mother_occupation'] ?? 'N/A') ?></p>
+                    <p><strong>Father's First Name:</strong>
+                        <?= htmlspecialchars($parents['father_firstname'] ?? 'N/A') ?></p>
+                    <p><strong>Father's Middle Name:</strong>
+                        <?= htmlspecialchars($parents['father_middlename'] ?? 'N/A') ?></p>
+                    <p><strong>Father's Last Name:</strong>
+                        <?= htmlspecialchars($parents['father_lastname'] ?? 'N/A') ?></p>
+                    <p><strong>Father's Occupation:</strong>
+                        <?= htmlspecialchars($parents['father_occupation'] ?? 'N/A') ?></p>
                 </div>
             </div>
         </div>
 
         <!-- Save button -->
         <div class="text-center mt-4">
-            <form action="save_data.php" method="post">
-                <button type="submit" class="btn btn-success">Save</button>
-            </form>
+            <!-- Save button -->
+            <div class="text-center mt-4">
+                <button type="button" id="saveBtn" class="btn btn-success">Save</button>
+            </div>
+
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+$(document).ready(function () {
+    $('#saveBtn').click(function () {
+        // Collect applicant and parent information from the session
+        const applicant = <?= json_encode($applicant) ?>;
+        const parents = <?= json_encode($parents) ?>;
+
+        // Combine both objects to send in a single request
+        const formData = {
+            applicant: applicant,
+            parents: parents
+        };
+
+
+        $.ajax({
+            url: '../../controller/form/submit_form.php',
+            type: 'POST',
+            data: JSON.stringify(formData), // Convert data to JSON string
+            contentType: 'application/json', // Set content type to JSON
+            success: function (response) {
+                alert("Form submitted successfully!");
+            },
+            error: function (xhr, status, error) {
+                console.error("Error details:", xhr, status, error); // Log error details
+                alert("An error occurred while submitting the form: " + error);
+            }
+        });
+    });
+});
+
+    </script>
+
 </body>
+
 </html>
