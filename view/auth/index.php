@@ -1,10 +1,8 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['username'])){
-        header('Location: ../landingpage.php');
-        exit();
-    }
-?>
+<?php session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../landingpage.php');
+    exit();
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,10 +91,13 @@
                 <li class="tab">
                     <a href="?page=applicants" data-switcher data-tab="applicants"
                         class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
-                            class='bx bxs-file-blank'></i> Applicants</a>
+                            class='bx bxs-file-blank'></i> Applicants <span id="pendingCount"
+                            class="badge text-bg-danger"></span>
+                    </a>
                 </li>
 
-                <button onclick="logOut()" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                <button onclick="logOut()"
+                    class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</button>
             </ul>
         </div>
@@ -147,6 +148,10 @@
                 <div class="page" data-page="applicants">
 
                 </div>
+
+                <div class="page" data-page="viewApplicant">
+
+                </div>
             </div>
         </section>
 
@@ -166,20 +171,20 @@
     };
 
     function logOut() {
-            Swal.fire({
-                title: "Are you sure you want to log out?",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('loadingOverlay').style.display = 'block';
-                    window.location.href = "../../controller/authentication/logout_action.php";
-                }
-            });
-        }
+        Swal.fire({
+            title: "Are you sure you want to log out?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('loadingOverlay').style.display = 'block';
+                window.location.href = "../../controller/authentication/logout_action.php";
+            }
+        });
+    }
 </script>
 <script>
     var currentYear = new Date().getFullYear();
@@ -222,6 +227,9 @@
                 case 'applicants':
                     pageUrl = 'applicants/index.php';
                     break;
+                case 'viewApplicant':
+                    pageUrl = 'applicants/view.php';
+                    break;
                 default:
                     console.error(`No page found for route: ${pageId}`);
                     return;
@@ -241,11 +249,21 @@
 
                     // Switch to the loaded page and hide the loading overlay
                     switchPage(pageId);
+
+                    // Call getApplicants if the applicants page is loaded
+                    if (pageId === 'applicants' && typeof getApplicants === 'function') {
+                        getApplicants();
+                    } else if (pageId === 'viewApplicant' && typeof getApplicantDetails === 'function') {
+                        getApplicantDetails();
+                    }
                 })
                 .catch(error => {
                     console.log(`Error loading page: ${error}`);
                     document.getElementById('loadingOverlay').style.display = 'none';
                 });
+
+            InitDatatable();
+            getApplicantsPendingCount();
         }
 
         // Function to switch to the specified page
@@ -263,7 +281,13 @@
             document.getElementById('loadingOverlay').style.display = 'none';
         }
     });
+
+    function InitDatatable() {
+        $('#myTable').DataTable();
+    } 
 </script>
+<script src="../../view/js/applicants/index.js?v=<?php echo time(); ?>"></script>
+<script src="../../view/js/applicants/view.js?v=<?php echo time(); ?>"></script>
 <script src="../../js/AuthLayout/script.js?v=<?php echo time(); ?>"></script>
 </body>
 
