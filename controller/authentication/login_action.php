@@ -25,19 +25,20 @@ class Authentication {
             );
         } else {
             $user = mysqli_fetch_assoc($result);
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Verify password
-            if (!password_verify($password, $user['password'])) {
+            // Verify password using password_verify
+            if (!password_verify($password, $hashedPassword)) {
                 return array(
                     'status' => 'error',
                     'message' => 'Incorrect Password.'
                 );
             } else {
                 // Set session variable
-                $_SESSION['password'] = $user['password'];
+                $_SESSION['username'] = $user['username']; // Store username or any other user data
                 return array(
                     'status' => 'success',
-                    'redirect' => 'index.php?page=dashboard'
+                    'redirect' => '../../view/auth/index.php?page=dashboard'
                 );
             }
         }

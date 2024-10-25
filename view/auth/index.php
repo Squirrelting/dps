@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['username'])){
+        header('Location: ../landingpage.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +33,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../../css/AuthLayout/index.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/AuthLayout/index.css?v=<?php echo time(); ?>">
     <link rel="icon" href="images/ez.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 
 
@@ -89,8 +96,8 @@
                             class='bx bxs-file-blank'></i> Applicants</a>
                 </li>
 
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Logout</a>
+                <button onclick="logOut()" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</button>
             </ul>
         </div>
     </div>
@@ -157,6 +164,22 @@
     toggleButton.onclick = function () {
         el.classList.toggle("toggled");
     };
+
+    function logOut() {
+            Swal.fire({
+                title: "Are you sure you want to log out?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('loadingOverlay').style.display = 'block';
+                    window.location.href = "../../controller/authentication/logout_action.php";
+                }
+            });
+        }
 </script>
 <script>
     var currentYear = new Date().getFullYear();
@@ -191,13 +214,13 @@
             // Map route names to file paths
             switch (pageId) {
                 case 'dashboard':
-                    pageUrl = '../../auth/dashboard.php';
+                    pageUrl = 'dashboard.php';
                     break;
                 case 'users':
-                    pageUrl = '../../auth/users/index.php';
+                    pageUrl = 'users/index.php';
                     break;
                 case 'applicants':
-                    pageUrl = '../../auth/applicants/index.php';
+                    pageUrl = 'applicants/index.php';
                     break;
                 default:
                     console.error(`No page found for route: ${pageId}`);

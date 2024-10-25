@@ -44,7 +44,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">HERO SECURITY AND INVESTIGATION SERVICES</a>
+        <a class="navbar-brand" href="../landingpage.php">HERO SECURITY AND INVESTIGATION SERVICES</a>
     </div>
 </nav>
 
