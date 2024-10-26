@@ -21,7 +21,7 @@
         }
 
         .navbar {
-            background-color: #5bc0de;
+            background-color: #28a745;
             /* Light blue navbar */
         }
 

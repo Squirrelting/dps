@@ -1,0 +1,7 @@
+.custom-gray {
+    background-color: #0000; /* Slightly darker gray than Bootstrap's gray-100 */
+    color: #333;
+  }
+  .custom-gray h6 {
+    color: #6c757d; /* Text-muted shade for label */
+  }

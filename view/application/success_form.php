@@ -24,7 +24,7 @@ session_start();
         }
 
         .navbar {
-            background-color: #5bc0de;
+            background-color: #28a745;
         }
 
         .navbar-brand {
@@ -44,6 +44,7 @@ session_start();
         .back-home-btn {
             display: block;
             margin: 30px auto;
+            background-color: #28a745;
         }
     </style>
 </head>
@@ -66,7 +67,7 @@ session_start();
         </div>
 
         <!-- Back to Home Button -->
-        <a href="../landingpage" class="btn btn-primary back-home-btn">Back to Home</a>
+        <a href="../landingpage" class="btn btn-success back-home-btn">Back to Home</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

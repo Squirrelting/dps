@@ -17,6 +17,7 @@ try {
             application.status
             FROM applicant
             INNER JOIN application ON applicant.id = application.applicant_id
+            ORDER BY application.id DESC
         ";
 
     $result = $conn->query($query);
