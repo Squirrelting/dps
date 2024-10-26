@@ -28,9 +28,12 @@ if (!isset($_SESSION['username'])) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="../../css/AuthLayout/index.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/dashboard.css?v=<?php echo time(); ?>">
     <link rel="icon" href="images/ez.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
     <title>EZCheck Admin</title>
 </head>
 <div class="loading-overlay" id="loadingOverlay">
@@ -244,10 +247,13 @@ if (!isset($_SESSION['username'])) {
                     switchPage(pageId);
 
                     // Call getApplicants if the applicants page is loaded
-                    if (pageId === 'applicants' && typeof getApplicants === 'function') {
+                    if (pageId === 'applicants') {
                         getApplicants();
-                    } else if (pageId === 'viewApplicant' && typeof getApplicantDetails === 'function') {
+                    } else if (pageId === 'viewApplicant') {
                         getApplicantDetails();
+                    } else if(pageId === 'dashboard') {
+                        getLineGraphData();
+                        getApplicantCountByStatus();
                     }
                 })
                 .catch(error => {
@@ -282,6 +288,7 @@ if (!isset($_SESSION['username'])) {
 <script src="../../view/js/applicants/index.js?v=<?php echo time(); ?>"></script>
 <script src="../../view/js/applicants/view.js?v=<?php echo time(); ?>"></script>
 <script src="../../js/AuthLayout/script.js?v=<?php echo time(); ?>"></script>
+<script src="../../view/js/dashboard/dashboard.js?v=<?php echo time(); ?>"></script>
 </body>
 
 </html>

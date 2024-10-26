@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .navbar {
-            background-color: #5bc0de;
+            background-color: #28a745;
             /* Light blue navbar */
         }
 
