@@ -38,7 +38,7 @@
 
 
 
-    <title>EZCheck Admin</title>
+    <title>DPS</title>
 </head>
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-content">
@@ -87,6 +87,11 @@
                     <a href="?page=users" data-switcher data-tab="users"
                         class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
                             class='bx bxs-user'></i> Users</a>
+                </li>
+                <li class="tab">
+                    <a href="?page=user-list" data-switcher data-tab="user-list"
+                        class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
+                            class='bx bxs-user'></i> User List</a>
                 </li>
 
                 <li class="tab">
@@ -143,6 +148,10 @@
 
                 </div>
 
+                <div class="page" data-page="user-list">
+
+                </div>
+
                 <div class="page" data-page="applicants">
 
                 </div>
@@ -155,7 +164,8 @@
 </div>
 <!-- CONTENT -->
 
-
+<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
@@ -218,6 +228,9 @@
                 case 'users':
                     pageUrl = 'users/index.php';
                     break;
+                case 'user-list':
+                    pageUrl = 'users/user-list.php';
+                break;
                 case 'applicants':
                     pageUrl = 'applicants/index.php';
                     break;
@@ -265,6 +278,8 @@
 </script>
 <!-- <script src="../../view/js/AuthLayout/script.js?v=<?php echo time(); ?>"></script> -->
 <script src="../../view/js/user/index.js?v=<?php echo time(); ?>"></script>
+<script src="../../view/js/user/add_user.js?v=<?php echo time(); ?>"></script>
+
 
 </body>
 

@@ -1,3 +1,28 @@
+function getUsers() {
+  fetch("../../controller/admin/get_users_data.php")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (users) {
+      console.log(users);
+      let out = "";
+      var no = 1;
+
+      for (let user of users) {
+        out += `<tr>
+                <td>${no++}</td>`;
+        out += `<td>${user.username}</td>
+                <td>${user.gmail}</td>`;
+        out += `</tr>`;
+      }
+
+      document.querySelector("#usersData").innerHTML = out;
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+    });
+}
+
 function createUser() {
   // Prevent default form submission behavior
   console.log("creating user");
@@ -49,7 +74,8 @@ function createUser() {
   }).then((result) => {
     if (result.isConfirmed) {
       $.post(
-        `../../controller/admin/admin_action.php`, {
+        `../../controller/admin/admin_action.php`,
+        {
           id: $("#userId").val(),
           username: $("#username").val(),
           gmail: $("#gmail").val(),
@@ -57,7 +83,7 @@ function createUser() {
           new_password: $("#new-password").val(),
           confirm_password: $("#confirm-password").val(),
         },
-        function(response) {
+        function (response) {
           console.log(response);
           let data = JSON.parse(response);
 
@@ -80,7 +106,7 @@ function createUser() {
               text: data.message,
             });
           }
-        },
+        }
       );
       // Show success message
     }
