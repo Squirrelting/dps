@@ -1,7 +1,7 @@
 
     /* CSS styles for the page */
     body {
-        background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+        background: linear-gradient(115deg, #4cda6d 10%, #70e78c 90%);
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -50,7 +50,7 @@
         text-align: center;
         text-transform: uppercase;
         color: #fff;
-        background-color: #007bff;
+        background-color: #4cda6d;
         border: none;
         border-radius: 10px;
         cursor: pointer;
@@ -58,7 +58,7 @@
     }
     
     input[type="submit"]:hover {
-        background-color: #0056b3;
+        background-color: #1e7d34;
     }
     
     input[type="password"],

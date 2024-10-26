@@ -21,7 +21,7 @@
         </div>
         <h2>Application Form</h2>
         <p class="top-text">HERO SECURITY AND INVESTIGATION SERVICES OFFICE</p>
-        <a href="application/applicant_form.php" class="btn-fill-up">Fill up</a>
+        <a href="application/applicant_form" class="btn-fill-up">Fill up</a>
     </div>
 </body>
 </html>

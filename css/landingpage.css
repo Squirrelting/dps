@@ -1,6 +1,6 @@
 /* CSS styles for the page */
 body {
-    background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+    background: linear-gradient(115deg, #4cda6d 10%, #70e78c 90%);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -16,8 +16,8 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    text-decoration: none;
-    background-color: #007BFF;
+    text-decoration: none;  
+    background-color: #28a745;
     color: white;
     padding: 15px 30px; /* Increased padding for larger button */
     border-radius: 8px;
@@ -27,7 +27,7 @@ body {
 }
 
 .admin-login:hover {
-    background-color: #054080;
+    background-color: #1e7d34;
 }
 
 /* Container styling */
@@ -62,7 +62,7 @@ h2 {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #28a745;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -70,5 +70,5 @@ h2 {
 }
 
 .btn-fill-up:hover {
-    background-color: #0056b3;
+    background-color: #1e7d34;
 }
