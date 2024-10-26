@@ -33,7 +33,7 @@ if (!isset($_SESSION['username'])) {
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
-    <title>EZCheck Admin</title>
+    <title>DPS</title>
 </head>
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-content">
@@ -82,6 +82,11 @@ if (!isset($_SESSION['username'])) {
                     <a href="?page=users" data-switcher data-tab="users"
                         class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
                             class='bx bxs-user'></i> Users</a>
+                </li>
+                <li class="tab">
+                    <a href="?page=user-list" data-switcher data-tab="user-list"
+                        class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
+                            class='bx bxs-user'></i> User List</a>
                 </li>
 
                 <li class="tab">
@@ -141,6 +146,10 @@ if (!isset($_SESSION['username'])) {
 
                 </div>
 
+                <div class="page" data-page="user-list">
+
+                </div>
+
                 <div class="page" data-page="applicants">
 
                 </div>
@@ -157,6 +166,8 @@ if (!isset($_SESSION['username'])) {
 </div>
 <!-- CONTENT -->
 
+<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
@@ -219,6 +230,9 @@ if (!isset($_SESSION['username'])) {
                 case 'users':
                     pageUrl = 'users/index.php';
                     break;
+                case 'user-list':
+                    pageUrl = 'users/user-list.php';
+                break;
                 case 'applicants':
                     pageUrl = 'applicants/index.php';
                     break;
@@ -288,6 +302,8 @@ if (!isset($_SESSION['username'])) {
 <script src="../../view/js/applicants/view.js?v=<?php echo time(); ?>"></script>
 <!-- <script src="../../view/js/AuthLayout/script.js?v=<?php echo time(); ?>"></script> -->
 <script src="../../view/js/user/index.js?v=<?php echo time(); ?>"></script>
+<script src="../../view/js/user/add_user.js?v=<?php echo time(); ?>"></script>
+
 
 <script src="../../view/js/dashboard/dashboard.js?v=<?php echo time(); ?>"></script>
 </body>
