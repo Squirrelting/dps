@@ -84,11 +84,6 @@ if (!isset($_SESSION['username'])) {
                         class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
                             class='bx bxs-user'></i> Users</a>
                 </li>
-                <li class="tab">
-                    <a href="?page=user-list" data-switcher data-tab="user-list"
-                        class="list-group-item list-group-item-action bg-transparent text-success-emphasis"><i
-                            class='bx bxs-user'></i> User List</a>
-                </li>
 
                 <li class="tab">
                     <a href="?page=applicants" data-switcher data-tab="applicants"
@@ -147,10 +142,6 @@ if (!isset($_SESSION['username'])) {
 
                 </div>
 
-                <div class="page" data-page="user-list">
-
-                </div>
-
                 <div class="page" data-page="applicants">
 
                 </div>
@@ -167,8 +158,6 @@ if (!isset($_SESSION['username'])) {
 </div>
 <!-- CONTENT -->
 
-<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
@@ -231,9 +220,6 @@ if (!isset($_SESSION['username'])) {
                 case 'users':
                     pageUrl = 'users/index.php';
                     break;
-                case 'user-list':
-                    pageUrl = 'users/user-list.php';
-                break;
                 case 'applicants':
                     pageUrl = 'applicants/index.php';
                     break;
@@ -268,8 +254,6 @@ if (!isset($_SESSION['username'])) {
                     } else if(pageId === 'dashboard') {
                         getLineGraphData();
                         getApplicantCountByStatus();
-                    } else if(pageId === 'user-list') {
-                        getUsers();
                     }
                 })
                 .catch(error => {
@@ -303,11 +287,7 @@ if (!isset($_SESSION['username'])) {
 </script>
 <script src="../../view/js/applicants/index.js?v=<?php echo time(); ?>"></script>
 <script src="../../view/js/applicants/view.js?v=<?php echo time(); ?>"></script>
-<!-- <script src="../../view/js/AuthLayout/script.js?v=<?php echo time(); ?>"></script> -->
-<script src="../../view/js/user/index.js?v=<?php echo time(); ?>"></script>
-<script src="../../view/js/user/add_user.js?v=<?php echo time(); ?>"></script>
-
-
+<script src="../../js/AuthLayout/script.js?v=<?php echo time(); ?>"></script>
 <script src="../../view/js/dashboard/dashboard.js?v=<?php echo time(); ?>"></script>
 </body>
 
