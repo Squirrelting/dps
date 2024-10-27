@@ -4,7 +4,7 @@ function getUsers() {
       return response.json();
     })
     .then(function (users) {
-      console.log(users);
+      let placeholder = document.querySelector("#usersData");
       let out = "";
       var no = 1;
 
@@ -16,7 +16,7 @@ function getUsers() {
         out += `</tr>`;
       }
 
-      document.querySelector("#usersData").innerHTML = out;
+      placeholder.innerHTML = out;
     })
     .catch(function (error) {
       console.error("Error fetching data:", error);
@@ -24,6 +24,48 @@ function getUsers() {
 }
 
 function createUser() {
+  var password = $("#password").val();
+  var confirmPassword = $("#confirm_password").val();
+  var username = $("#username").val();
+  var gmail = $("#gmail").val();
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    Swal.fire("Error", "Passwords do not match.", "error");
+    return;
+  }
+
+  $.ajax({
+    url: "../../controller/admin/add_user.php",
+    type: "POST",
+    data: {
+      password: password,
+      confirmPassword: confirmPassword,
+      username: username,
+      gmail: gmail,
+    },
+    success: function (response) {
+      var data = JSON.parse(response);
+
+      if (data.success) {
+        Swal.fire("Success", "Admin user added successfully.", "success").then(
+          () => {
+            // Reload the page to see the new user in the list
+          }
+        );
+        getUsers();
+        closeModal();
+      } else {
+        Swal.fire("Error", data.message, "error");
+      }
+    },
+    error: function () {
+      Swal.fire("Error", "An error occurred while saving the admin.", "error");
+    },
+  });
+}
+
+function updateUser() {
   // Prevent default form submission behavior
   console.log("creating user");
   //   // Check if the form is valid

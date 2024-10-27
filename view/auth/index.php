@@ -268,6 +268,8 @@ if (!isset($_SESSION['username'])) {
                     } else if(pageId === 'dashboard') {
                         getLineGraphData();
                         getApplicantCountByStatus();
+                    } else if(pageId === 'user-list') {
+                        getUsers();
                     }
                 })
                 .catch(error => {

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $gmail = $_POST['gmail'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $confirm_password = $_POST['confirmPassword'];
 
     // Validate passwords match
     if ($password !== $confirm_password) {
